@@ -20,15 +20,22 @@ function addEntry() {
   const targetInputContainer = document.querySelector(`#${entryDropdown.value} .input-container`);
   const entryNumber = targetInputContainer.querySelectorAll('input[type="text"]').length + 1;
   const HTMLString = `
-  <label for="${entryDropdown.value}-${entryNumber}-name">Entry ${entryNumber} Name</label>
-  <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
-  <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>
-  <input
-    type="number"
-    min="0"
-    id="${entryDropdown.value}-${entryNumber}-calories"
-    placeholder="Calories"
-  />`;
+  <div class="flex space-x-4">
+    <div class="flex-1">
+      <label for="${entryDropdown.value}-${entryNumber}-name" class="block text-sm font-medium text-gray-700">Entry ${entryNumber} Name</label>
+      <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" />
+    </div>
+    <div class="flex-1">
+      <label for="${entryDropdown.value}-${entryNumber}-calories" class="block text-sm font-medium text-gray-700">Entry ${entryNumber} Calories</label>
+      <input
+        type="number"
+        min="0"
+        id="${entryDropdown.value}-${entryNumber}-calories"
+        placeholder="Calories"
+        class="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+      />
+    </div>
+  </div>`;
   targetInputContainer.insertAdjacentHTML('beforeend', HTMLString);
 }
 
@@ -64,7 +71,7 @@ function calculateCalories(e) {
   <p>${exerciseCalories} Calories Burned</p>
   `;
 
-  output.classList.remove('hide');
+  output.classList.remove('hidden');
 }
 
 function getCaloriesFromInputs(list) {
@@ -93,7 +100,7 @@ function clearForm() {
 
   budgetNumberInput.value = '';
   output.innerText = '';
-  output.classList.add('hide');
+  output.classList.add('hidden');
 }
 
 addEntryButton.addEventListener("click", addEntry);
